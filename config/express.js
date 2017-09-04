@@ -22,7 +22,8 @@ var fs = require('fs-extra'),
 	consolidate = require('consolidate'),
 	path = require('path'),
 	device = require('express-device'),
-	client = new raven.Client(config.DSN);
+	client = new raven.Client(config.DSN),
+	i18n = require('i18n');
 
 var mongoose = require('mongoose');
 
@@ -219,8 +220,15 @@ module.exports = function(db) {
 	app.use('/static', express.static(path.resolve('./public')));
 	app.use('/uploads', express.static(path.resolve('./uploads')));
 
+	i18n.configure({
+    	locales:['en', 'es'],
+    	directory: __dirname + '/../locales',
+    	cookie: 'lang'
+	});
+
 	// CookieParser should be above session
 	app.use(cookieParser());
+	app.use(i18n.init);
 
 	// Express MongoDB session storage
 

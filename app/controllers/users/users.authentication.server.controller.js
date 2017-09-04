@@ -101,6 +101,8 @@ exports.signup = function(req, res) {
 	// Init Variables
 	var user = new User(req.body);
 
+
+
 	// Add missing user fields
 	user.provider = 'local';
 	// Then save the temporary user
@@ -143,6 +145,8 @@ exports.signin = function(req, res, next) {
 			user.password = null;
 			user.salt = null;
 			user.provider = null;
+
+			res.cookie('lang', user.language);
 
 			req.login(user, function(loginErr) {
 				if (loginErr) {

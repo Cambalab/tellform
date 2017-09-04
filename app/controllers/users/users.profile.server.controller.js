@@ -17,9 +17,20 @@ exports.update = function(req, res) {
 	// For security measurement we remove the roles from the req.body object
 	delete req.body.roles;
 
+	var cleanBody = {};
+	// To be safe from overwritting important data with null values, we clean the request body.
+	for (var key in req.body){
+		console.log(key + " is " + req.body[key]);
+		if(req.body[key] !== null){
+			cleanBody[key] = req.body[key];
+		}
+	}
+
 	if (user) {
 		// Merge existing user
-		user = _.extend(user, req.body);
+		// the body of the request contains null properties that end up overwriting important data on the db
+		// i.e.: null passwordHash ends up overwriting valid passwordHash and thus not allowing the user to log in.
+		user = _.extend(user, cleanBody); 
 		user.updated = Date.now();
 
 		user.save(function(err) {

@@ -1,0 +1,8 @@
+{
+	"USER_AUTH_VERIFY_MAIL_SUBJECT": "Confirm your account",
+	"USER_AUTH_VERIFY_MAIL_HTML": "<p>Please verify your account by clicking <a href='http://${URL}'>this link</a>. If you are unable to do so, copy and paste the following link into your browser:</p><p>${URL}</p>",
+	"USER_AUTH_VERIFY_MAIL_TEXT": "Please verify your account by clicking the following link, or by copying and pasting it into your browser: ${URL}",
+	"USER_AUTH_CONFIRM_MAIL_SUBJECT": "Account successfully verified!",
+	"USER_AUTH_CONFIRM_MAIL_HTML": "<p>Your account has been successfully verified.</p>",
+	"USER_AUTH_CONFIRM_MAIL_TEXT": "Your account has been successfully verified."
+}

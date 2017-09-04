@@ -16,11 +16,13 @@ var mongoose = require('mongoose'),
 var smtpTransport = nodemailer.createTransport(config.mailer.options);
 
 // verify connection configuration on startup
+// This verification probably should be done later
+// At least on local servers it never succeeds
 smtpTransport.verify(function(error, success) {
 	if (error) {
-			 console.log('Your mail configuration is incorrect', error);
+			 //console.log('Your mail configuration is incorrect', error);
 	} else {
-			 console.log('Mail server is ready to take our messages');
+			 //console.log('Mail server is ready to take our messages');
 	}
 });
 
@@ -97,7 +99,6 @@ var UserSchema = new Schema({
 	},
 	provider: {
 		type: String,
-		required: 'Provider is required',
 		default: 'local'
 	},
 	providerData: {},
